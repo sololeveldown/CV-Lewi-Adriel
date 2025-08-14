@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lewi Adriel-A Journeyman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f4f5;
+            color: #1eb8df;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #81B29A;
+            border-bottom-color: #81B29A;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            background-color: #FDFBF8;
+            border: 4px solid #81B29A;
+            left: -0.625rem;
+            top: 0;
+            z-index: 10;
+        }
+        .timeline-content {
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .timeline-item.open .timeline-content {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="home" class="w-full">
+        <nav id="navbar" class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-between items-center h-16">
+                    <a href="#home" class="text-2xl font-bold text-[#3D405B]">Lewi Adriel Tarigan</a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#about" class="nav-link pb-1">Mengenai</a>
+                        <a href="#experience" class="nav-link pb-1">Pengalaman</a>
+                        <a href="#skills" class="nav-link pb-1">Keahlian</a>
+                        <a href="#education" class="nav-link pb-1">Pendidikan</a>
+                        <a href="#gallery" class="nav-link pb-1">Galeri</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-[#3D405B] focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden">
+                <a href="#about" class="block py-2 px-4 text-sm text-[#3D405B] hover:bg-[#E07A5F]/20">Mengenai</a>
+                <a href="#experience" class="block py-2 px-4 text-sm text-[#3D405B] hover:bg-[#E07A5F]/20">Pengalaman</a>
+                <a href="#skills" class="block py-2 px-4 text-sm text-[#3D405B] hover:bg-[#E07A5F]/20">Keahlian</a>
+                <a href="#education" class="block py-2 px-4 text-sm text-[#3D405B] hover:bg-[#E07A5F]/20">Pendidikan</a>
+                <a href="#gallery" class="block py-2 px-4 text-sm text-[#3D405B] hover:bg-[#E07A5F]/20">Galeri</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-16">
+        <section id="about" class="py-20 md:py-32">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-[#3D405B] mb-4">Journeyman</h1>
+                <p class="text-lg md:text-xl text-[#3D405B]/80 mb-8 max-w-2xl mx-auto">
+                    Seorang profesional yang memiliki pengalaman enam tahun di berbagai industri, dengan minat yang kuat dalam bidang kepenulisan dan pembuatan konten, website, maupun industri kreatif lainnya. Merupakan lulusan program Sarjana Ilmu Komputer dari Universitas Bina Nusantara dengan IPK 2.8.
+                </p>
+                <div class="flex justify-center items-center space-x-4 text-sm text-[#3D405B]/70">
+                    <span>(+62) 822-9747-3052 </span>
+                    <span class="text-[#81B29A]">|</span>
+                    <span>arclelouch@gmail.com</span>
+                    <span class="text-[#81B29A]">|</span>
+                    <span>Instagram : @tarigaeryean</span>
+                    <span class="text-[#81B29A]">|</span>
+                    <a href="https://www.linkedin.com/in/lewi-adriel-b8398b198/" target="https://www.linkedin.com/in/lewi-adriel-b8398b198/" class="hover:text-[#E07A5F] transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#3D405B]">Career Journey</h2>
+                <div class="relative border-l-2 border-[#81B29A]/30 ml-2">
+                    
+                    <div class="timeline-item mb-12 pl-10 cursor-pointer">
+                        <h3 class="text-xl font-bold text-[#3D405B]">Mechanical Electrical and Plumbing Staff</h3>
+                        <p class="text-md text-[#3D405B]/70 mb-2">CV. Pensil Desain | Bandung, Indonesia</p>
+                        <p class="text-sm font-medium text-[#81B29A]">April 2015 - Agustus 2015</p>
+                        <div class="timeline-content mt-4">
+                            <ul class="list-disc list-inside text-[#3D405B]/90 space-y-2">
+                                <li>Bertanggung jawab atas proyek di Grand Asia Afrika Apartment dan Belviu Hotel Bandung.</li>
+                                <li>Mengundurkan diri untuk fokus pada pendidikan di Universitas Indonesia.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item mb-12 pl-10 cursor-pointer">
+                        <h3 class="text-xl font-bold text-[#3D405B]">Recreation Facilitator</h3>
+                        <p class="text-md text-[#3D405B]/70 mb-2">Dusun Bambu | Bandung, Indonesia</p>
+                        <p class="text-sm font-medium text-[#81B29A]">January 2019 - July 2019</p>
+                        <div class="timeline-content mt-4">
+                            <ul class="list-disc list-inside text-[#3D405B]/90 space-y-2">
+                                <li>Bertanggung jawab untuk memandu berbagai permainan dan kegiatan interaktif bagi pengunjung.</li>
+                                <li>Mengembangkan pengalaman rekreasi yang menyenangkan dan aman bagi semua pengunjung.</li>
+                                <li>Mengundurkan diri untuk melanjutkan pendidikan di Bina Nusantara @ Bandung</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-12 pl-10 cursor-pointer">
+                        <h3 class="text-xl font-bold text-[#3D405B]">Senior Barista/Supervisor</h3>
+                        <p class="text-md text-[#3D405B]/70 mb-2">Somehow a Cafe | Bandung, Indonesia</p>
+                        <p class="text-sm font-medium text-[#81B29A]">July 2020 - July 2022</p>
+                        <div class="timeline-content mt-4">
+                            <ul class="list-disc list-inside text-[#3D405B]/90 space-y-2">
+                                <li>Mengelola operasional harian kafe dan memastikan standar kualitas produk dan layanan tetap terjaga. Berhasil meraih Break Even Point pada kuartal 3 Tahun Berdiri ke-2</li>
+                                <li>Juga bertanggung jawab untuk melatih dan mengawasi dua junior barista dan satu juru masak.</li>
+                                <li>Mengurungkan Usaha sementara waktu dikarenakan adanya kewajiban perkuliahan dan Internship di PT. Multi Garmenjaya</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-12 pl-10 cursor-pointer">
+                        <h3 class="text-xl font-bold text-[#3D405B]">Business Analyst Staff</h3>
+                        <p class="text-md text-[#3D405B]/70 mb-2">PT. Multi Garmenjaya | Bandung, Indonesia</p>
+                        <p class="text-sm font-medium text-[#81B29A]">April 2022 - April 2023</p>
+                        <div class="timeline-content mt-4">
+                            <ul class="list-disc list-inside text-[#3D405B]/90 space-y-2">
+                                <li>Bertugas Menganalisa dan membandingkan Pembelian dan Penjualan ke dalam format <i>readable</i> seperti Excel ataupun Tableau/Power BI</li>
+                                <li>Berawal dari kegiatan <i>internship</i> yang diwajibkan oleh program Binus, kemudian diangkat menjadi karyawan kontrak selama 6 bulan setelah terevaluasi layak</li>
+                                <li>Menyelesaikan kontrak untuk menyelesaikan perkuliahan di Bina Nusantara Bandung.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4 text-[#3D405B]">Keahlian profesional</h2>
+                <p class="text-center text-[#3D405B]/80 mb-12">Representasi visual terhadap keahlian teknikal dan mekanikal yang saya miliki.</p>
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+                    <button class="skill-btn active bg-[#81B29A] text-white py-2 px-4 rounded-full text-sm font-medium" data-skill="marketing">Teknikal</button>
+                    <button class="skill-btn bg-white text-[#3D405B] py-2 px-4 rounded-full text-sm font-medium shadow-sm hover:bg-gray-50" data-skill="software">Mekanikal</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-[#3D405B]">Pendidikan</h2>
+                <div class="bg-white rounded-lg shadow-md p-8 max-w-md mx-auto border border-gray-200">
+                    <h3 class="text-xl font-bold text-[#3D405B]">Universitas Bina Nusantara</h3>
+                    <p class="text-md text-[#3D405B]/70 mb-2">Bandung, Jawa Barat</p>
+                    <p class="font-semibold text-[#3D405B]">Sarjana Teknik Informasi/ Ilmu Komputer</p>
+                    <p class="text-sm text-[#81B29A] mt-1">Lulus pada 2025</p>
+                </div>
+            <div class="bg-white rounded-lg shadow-md p-8 max-w-md mx-auto border border-gray-200">
+                    <h3 class="text-xl font-bold text-[#3D405B]">SMA BPK Penabur 2</h3>
+                    <p class="text-md text-[#3D405B]/70 mb-2">Bandung, Jawa Barat</p>
+                    <p class="font-semibold text-[#3D405B]">Mengambil Jurusan IPA</p>
+                    <p class="text-sm text-[#81B29A] mt-1">Class of 2015</p>
+                </div>
+            <div class="bg-white rounded-lg shadow-md p-8 max-w-md mx-auto border border-gray-200">
+                    <h3 class="text-xl font-bold text-[#3D405B]">Universitas Indonesia</h3>
+                    <p class="text-md text-[#3D405B]/70 mb-2">Depok, Jawa Barat</p>
+                    <p class="font-semibold text-[#3D405B]">Mengambil Jurusan Ilmu Filsafat, Fakultas Ilmu Budaya</p>
+                    <p class="text-sm text-[#81B29A] mt-1">Class of 2015, Mengundurkan Diri di Tahun 2018</p>
+                </div>        
+            </div>
+        </section>
+        ---
+<section id="gallery" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12 text-[#3D405B]">Galeri</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                <img src="C:\Users\INTEL\Downloads\IMG_20150509_133017.jpg" alt="Bekerja di Proyek Grand Asia Afrika" class="w-full h-auto object-cover">
+            </div>
+            
+            <div class="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                <img src="path/ke/gambar-2.jpg" alt="Deskripsi gambar 2" class="w-full h-auto object-cover">
+            </div>
+
+            <div class="rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                <img src="path/ke/gambar-3.jpg" alt="Deskripsi gambar 3" class="w-full h-auto object-cover">
+            </div>
+            
+            </div>
+    </div>
+</section>
+    </main>
+
+    <footer class="bg-[#3D405B] text-white/70 py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+            <p>&copy; Lewi Adriel | 2025. CV dan Pengalaman Hidup.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('open');
+                });
+            });
+            if(timelineItems.length > 0) {
+                timelineItems[0].classList.add('open');
+            }
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.onscroll = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 70) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+            
+            const skillsData = {
+                marketing: {
+                    labels: ['Bahasa Inggris', 'Public Speaking', 'Web Design/Development', 'Hardware Support'. 'Food Industry Knowledge'],
+                    values: [95, 90, 80, 90, 90]
+                },
+                software: {
+                    labels: ['Data Visualizer (Excel/Power BI/Tableau)', 'Microsoft Office', 'Visual Studio Code' 'Coffee Knowledge', 'Keahlian Dapur'],
+                    values: [80, 95, 80, 90, 83]
+                }
+            };
+
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            let skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: skillsData.marketing.labels,
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: skillsData.marketing.values,
+                        backgroundColor: '#81B29A',
+                        borderColor: '#6A9C80',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                display: false,
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false,
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                color: '#3D405B',
+                                font: {
+                                    size: 14,
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#3D405B',
+                            titleFont: {
+                                weight: 'bold'
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Proficiency: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const skillButtons = document.querySelectorAll('.skill-btn');
+            skillButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    skillButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-[#81B29A]', 'text-white');
+                        btn.classList.add('bg-white', 'text-[#3D405B]');
+                    });
+                    button.classList.add('active', 'bg-[#81B29A]', 'text-white');
+                    button.classList.remove('bg-white', 'text-[#3D405B]');
+
+                    const skillCategory = button.dataset.skill;
+                    skillsChart.data.labels = skillsData[skillCategory].labels;
+                    skillsChart.data.datasets[0].data = skillsData[skillCategory].values;
+                    skillsChart.update();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
